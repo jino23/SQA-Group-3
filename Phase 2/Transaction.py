@@ -1,6 +1,8 @@
 from Account import Account
 from Account import User
 
+import random
+
 
     
 class Transaction:
@@ -48,54 +50,6 @@ class Transaction:
             print("Successfully logged in\n")
             
             self.options_for_Admin()
-
-
-    def options_for_standard(self):
-        code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n00 - End of Session\nEnter the number: ")
-        
-        if code not in ["01", "02", "03", "04", "00"]:
-            print("Error invalid code.\n")
-            print("Exiting....")
-            return
-            
-        if code == "01":
-            self.withdraw()
-        elif code == "02":
-            self.transfer()
-        elif code == "03":
-            self.paybill()
-        elif code == "04":
-            self.deposit()
-        elif code == "00":
-             self.logout()
-
-    def options_for_Admin(self):
-        code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n05 - Create\n06 - Delete\n07 - Disable\n08 - Change Plan\n00 - End of Session\nEnter the number: ")
-        
-        if code not in ["01","02","03","04","05","06","07","08","00"]:
-            print("Error invalid code. \n")
-            print("Exiting....")
-            return
-            
-
-        if code == "01":
-            self.withdraw()
-        elif code == "02":
-            self.transfer()
-        elif code == "03":
-            self.paybill()
-        elif code == "04":
-            self.deposit()
-        elif code == "05":
-            self.create()
-        elif code == "06" :
-            self.delete()
-        elif code == "07" :
-            self.disable()
-        elif code == "08":
-            self.change_plan()
-        elif code == "00":
-            self.logout()
 
 
 
@@ -168,9 +122,45 @@ class Transaction:
         print("Depositing funds...")
 
     def create(self):
-        print("Creating account...")
+        print("Create Account - Admin Mode\n")
 
 
+
+        name=input("Enter name for account holder: ")
+
+        if not name.replace(" ", "").isalpha():
+            print("Invalid input. Name must contain only letters.")
+            print("Exiting....")
+            return
+        
+        if len(name) > 20:
+            print("Invalid input. Name must not exceed 20 characters.")
+            print("Exiting....")
+            return
+        
+
+        
+        balanceCreated = float(input("Enter amount for the balance: "))
+        if balanceCreated >=999999.99:
+            print("Invalid input. Balance exceeds over $99,999.99")
+            print("Exiting....")
+            return
+        
+        account_number = ''.join(str(random.randint(0, 9)) for _ in range(10))
+
+        userCreated=User(False)
+
+        accountCreated=Account(account_number,balanceCreated, name,userCreated)
+
+        print("Account successfully Created\n")
+        
+        print(f"Account Number: {accountCreated.account_id}\n")
+        print(f"Balance: {accountCreated.balance}")
+        print(f"Account Number: {accountCreated.account_name}\n")
+
+
+        self.options_after_create()
+        
 
 
     def delete(self):
@@ -185,6 +175,69 @@ class Transaction:
     def logout(self):
         print("logging out...")
         return
+            
+
+    def options_for_standard(self):
+        print("--------------MENU SESSION----------------")
+        code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n00 - End of Session\nEnter the number: ")
+        
+        if code not in ["01", "02", "03", "04", "00"]:
+            print("Error invalid code.\n")
+            print("Exiting....")
+            return
+            
+        if code == "01":
+            self.withdraw()
+        elif code == "02":
+            self.transfer()
+        elif code == "03":
+            self.paybill()
+        elif code == "04":
+            self.deposit()
+        elif code == "00":
+             self.logout()
+
+    def options_for_Admin(self):
+        print("--------------MENU SESSION----------------")
+        code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n05 - Create\n06 - Delete\n07 - Disable\n08 - Change Plan\n00 - End of Session\nEnter the number: ")
+        
+        if code not in ["01","02","03","04","05","06","07","08","00"]:
+            print("Error invalid code. \n")
+            print("Exiting....")
+            return
+            
+
+        if code == "01":
+            self.withdraw()
+        elif code == "02":
+            self.transfer()
+        elif code == "03":
+            self.paybill()
+        elif code == "04":
+            self.deposit()
+        elif code == "05":
+            self.create()
+        elif code == "06" :
+            self.delete()
+        elif code == "07" :
+            self.disable()
+        elif code == "08":
+            self.change_plan()
+        elif code == "00":
+            self.logout()
+
+
+    def options_after_create(self):
+        print("--------------MENU SESSION----------------")
+
+        code=input("00 - Logout:\nEnter the number: ")
+        if code not in ["00"]:
+            print("Error invalid code.\n")
+            print("Exiting....")
+            return
+        
+        if code==00:
+            self.logout()
             
 
 
