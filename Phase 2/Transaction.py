@@ -21,6 +21,10 @@ class Transaction:
                 print("Invalid account number.")
                 print("Exiting....")
                 return
+            if self.account.user.Admin==True:
+                print("ERROR - This is an Admin Account - Must Click Admin")
+                print("Exiting....")
+                return
                 
             print("Successfully logged in\n")
             self.options_for_standard()
@@ -32,6 +36,7 @@ class Transaction:
             if userAccount != self.account.account_id:
                 print("Invalid account number.")
                 print("Exiting....")
+                return
                 
 
             if self.account.user.Admin != True:
@@ -150,13 +155,15 @@ class Transaction:
 
         userCreated=User(False)
 
-        accountCreated=Account(account_number,balanceCreated, name,userCreated)
+        accountCreated=Account(account_number,balanceCreated, name,userCreated,"NP", "A")
 
         print("Account successfully Created\n")
-        
         print(f"Account Number: {accountCreated.account_id}\n")
-        print(f"Balance: {accountCreated.balance}")
-        print(f"Account Number: {accountCreated.account_name}\n")
+        print(f"Balance: {accountCreated.balance}\n")
+        print(f"Account Name: {accountCreated.account_name}\n")
+        print(f"Account Plan: {accountCreated.plan}\n")
+        print(f"Account Number: {accountCreated.activity}\n")
+
 
 
         self.options_after_create()
@@ -245,16 +252,17 @@ class Transaction:
             
 
 
-        
+#this is an Admin account        
 user = User(True)  
-account = Account("A123", 500.0, "J", user)  
+account = Account("A123", 500.0, "J", user, "NP", "A")  
 
+#this is an Standard Account
 user2 = User(False)  
-account2=Account("A12", 5, "K",user2)
+account2=Account("A12", 500, "K",user2,"NP", "A")
 
 
 
-transaction = Transaction(account)
+transaction = Transaction(account2)
 
 
 transaction.login()
