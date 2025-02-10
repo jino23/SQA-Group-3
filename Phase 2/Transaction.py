@@ -15,9 +15,11 @@ class Transaction:
             print("Welcome Standard User \n")
             userAccount= input("Enter account number: ")
             
-            while userAccount!=self.account.account_id:
-                print("Invalid account number. Please try again.")
-                userAccount = input("Re Enter account number: ")
+            if userAccount!=self.account.account_id:
+                print("Invalid account number.")
+                print("Exiting....")
+                return
+                
             print("Successfully logged in\n")
             self.options_for_standard()
 
@@ -25,19 +27,23 @@ class Transaction:
 
             print("Welcome Admin User \n")
             userAccount= input("Enter account number: ")
-            while userAccount != self.account.account_id:
-                print("Invalid account number. Please try again.")
-                userAccount = input("Re Enter account number: ")
+            if userAccount != self.account.account_id:
+                print("Invalid account number.")
+                print("Exiting....")
+                
 
             if self.account.user.Admin != True:
-                    print("This is not an admin account exiting....")
+                    print("This is not an admin account.")
+                    print("Exiting....")
                     return
 
            
             userName= input("Enter account Name: ")
-            while userName!=self.account.account_name:
-                print("Invalid account name. Please try again.")
-                userName = input("Re Enter account Name: ")
+            if userName!=self.account.account_name:
+                print("Invalid account name.")
+                print("Exiting....")
+                return
+                
             
             print("Successfully logged in\n")
             
@@ -47,9 +53,11 @@ class Transaction:
     def options_for_standard(self):
         code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n00 - End of Session\nEnter the number: ")
         
-        while code not in ["01", "02", "03", "04", "00"]:
-            print("Error invalid code enter again\n")
-            code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n00 - End of Session\nEnter the number: ")
+        if code not in ["01", "02", "03", "04", "00"]:
+            print("Error invalid code.\n")
+            print("Exiting....")
+            return
+            
         if code == "01":
             self.withdraw()
         elif code == "02":
@@ -64,9 +72,11 @@ class Transaction:
     def options_for_Admin(self):
         code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n05 - Create\n06 - Delete\n07 - Disable\n08 - Change Plan\n00 - End of Session\nEnter the number: ")
         
-        while code not in ["01","02","03","04","05","06","07","08","00"]:
-            print("Error invalid code enter again\n")
-            code=input("01 - Withdrawal\n02 - Transfer\n03 - Pay Bill\n04 - Deposit\n05 - Create\n06 - Delete\n07 - Disable\n08 - Change Plan\n00 - End of Session\nEnter the number: ")
+        if code not in ["01","02","03","04","05","06","07","08","00"]:
+            print("Error invalid code. \n")
+            print("Exiting....")
+            return
+            
 
         if code == "01":
             self.withdraw()
@@ -94,12 +104,16 @@ class Transaction:
             print("Standard  mode - Withdrawal")
             
             amount = float(input("Enter amount to withdraw (Max $500 for standard users): "))
-            while amount > 500:
+            if amount > 500:
                 print("ERROR: Max withdrawal limit is $500 for standard users.")
-                amount = float(input("Enter amount to withdraw (Max $500 for standard users): "))
-            while self.account.balance - amount < 0:
-                print(f"ERROR: Insufficient funds to withdraw. Current Balance: {self.account.balance}")
-                amount = float(input("Enter amount to withdraw (Max $500 for standard users): "))
+                print("Exiting....")
+                return
+                
+            if self.account.balance - amount < 0:
+                print(f"ERROR: Insufficient funds to withdraw. Current Balance: {self.account.balance}.")
+                print("Exiting....")
+                return
+                
             
             self.account.balance -= amount
             print(f"Withdrawal successful. New balance: {self.account.balance}")
@@ -113,24 +127,29 @@ class Transaction:
             print("Admin mode - Withdrawal")
 
             UserNumber=(input("Enter account Number: "))
-            while UserNumber!= account2.account_id:
+            if UserNumber!= account2.account_id:
                 print("ERROR: Acount number invalid")
-                UserNumber=(input("Enter account Number: "))
+                print("Exiting....")
+                return
 
             UserName=(input("Enter Account Holder Name: "))
-            while UserName!= account2.account_name:
+            if UserName!= account2.account_name:
                 print("ERROR: Acount Holder Name is invalid ")
-                UserNumber=(input("Enter Account Holder Name: "))
+                print("Exiting....")
+                return
+                
 
             
             amount = float(input("Enter amount to withdraw: "))
-            while amount > 500:
+            if amount > 500:
                 print("ERROR: Max withdrawal limit is $500 for user.")
-                amount = float(input("Enter amount to withdraw (Max $500 for standard users): "))
-            while account2.balance - amount < 0:
+                print("Exiting....")
+                return
+               
+            if account2.balance - amount < 0:
                 print(f"ERROR: Insufficient funds to withdraw. Current Account Balance: {account2.balance} ")
-                amount = float(input("Enter amount to withdraw (Max $500 for standard users): "))
-
+                print("Exiting....")
+                return
             account2.balance=account2.balance-amount
             print(f"Withdrawal successful. New balance: {account2.balance}")
 
@@ -151,6 +170,9 @@ class Transaction:
     def create(self):
         print("Creating account...")
 
+
+
+
     def delete(self):
         print("Deleting account...")
 
@@ -161,7 +183,8 @@ class Transaction:
         print("Changing account plan...")
 
     def logout(self):
-        print("logout...")
+        print("logging out...")
+        return
             
 
 
