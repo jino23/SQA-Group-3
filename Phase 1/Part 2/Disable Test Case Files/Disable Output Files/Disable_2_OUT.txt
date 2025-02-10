@@ -1,0 +1,37 @@
+Welcome!
+
+What mode would you like to log in to?
+Enter S for Standard Mode, Enter A for Admin Mode: 
+
+Admin Mode Chosen.
+
+Enter Account Number: 
+
+Enter Account Name: 
+
+Enter a code for the type of transaction you want to complete: 
+01 - Withdrawal
+02 - Transfer
+03 - PayBill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+
+Disable Session - Admin mode
+
+Enter your account number: 
+
+ERROR - Account number entered is invalid
+
+Enter your account number: 
+
+Enter your name: 
+
+Enter (A) to activate the account | Enter (D) to disable the account: 
+
+Successfully disabled account **34
+
+Back to main page
