@@ -29,7 +29,7 @@ class Transaction:
             print("Welcome Admin User \n")
             userAccount = input("Enter account number: ")
             
-            if userAccount != self.account.account_id:
+            if not userAccount == self.account.account_id:
                 print("Invalid account number.")
                 print("Exiting....")
                 return
@@ -285,7 +285,36 @@ class Transaction:
         print("Disabling account...")
 
     def change_plan(self):
-        print("Changing account plan...")
+        print("Change Plan")
+        account_name = str
+        account_number = str
+        np = str
+
+        while not account_name == account2.account_name: 
+            account_name = input("Enter Account Name to Be Changed: ")
+            if not account_name == account2.account_name:
+                print("Invalid account name! Try again!")
+            elif account_name == "":
+                print("Please enter an account name!")
+
+        while not account_number == account2.account_id:
+            account_number = input("Enter Account Number to Be Changed: ")
+            if not account_number == account2.account_id:
+                print("This is not a valid account number!")
+            elif account_number == "":
+                print("Please enter an account number!")
+           
+        print("Account number validation successful")
+        while not np == "NP":
+            np = input("Enter NP to switch the bank account payment plan from Student to Non-Student.")
+            if np == "":
+                break
+            elif np == "NP":
+                account2.plan = "NP"
+                print("Changed from student to non-student")
+                print("All changes saved successfully. Returning to main menu...")
+        self.options_for_Admin()
+            
 
     def logout(self):
         print("logging out...")
