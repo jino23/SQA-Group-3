@@ -315,7 +315,6 @@ class Transaction:
                 print("All changes saved successfully. Returning to main menu...")
         self.options_for_Admin()
             
-
     def logout(self):
         print("logging out...")
         return
