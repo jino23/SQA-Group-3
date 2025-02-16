@@ -216,7 +216,132 @@ class Transaction:
         print(f"New balance: ${self.account.balance}")
 
     def deposit(self):
-        print("Depositing funds...")
+
+        userType= input("Enter (S) for Standard user or (A) for Admin user: ")
+        if userType=="S":
+            print("Welcome Standard User \n")
+                
+            print("Successfully logged in\n")
+            # self.options_for_standard()
+
+        elif userType=="A":
+
+            print("Welcome Admin User \n")
+           
+            
+            print("Successfully logged in\n")
+            
+            # self.options_for_Admin()
+        
+        if not self.account.user.Admin:
+            print("Standard  mode - Deposit")
+            
+            amount = float(input("Enter amount to deposit (Max $500 for standard users): "))
+            if amount > 500:
+                print("ERROR: Max deposit limit is $500 for standard users.")
+                print("Exiting....")
+                return
+                
+            if self.account.balance + amount < 0:
+                print(f"ERROR: Insufficient funds to deposit. Current Balance: {self.account.balance}.")
+                print("Exiting....")
+                return
+                    
+            self.account.balance += amount
+            print(f"Deposit successful. New balance: {self.account.balance}")
+
+        if self.account.user.Admin:
+
+            user2 = User(False)  
+            account2=Account("A12", 5, "K",user2)
+
+            print("Admin mode - Deposit")
+
+            UserNumber=(input("Enter account Number: "))
+            if UserNumber!= account2.account_id:
+                print("ERROR: Acount number invalid")
+                print("Exiting....")
+                return
+
+            UserName=(input("Enter Account Holder Name: "))
+            if UserName!= account2.account_name:
+                print("ERROR: Acount Holder Name is invalid ")
+                print("Exiting....")
+                return
+                
+
+            
+            amount = float(input("Enter amount to deposit: "))
+            if amount > 500:
+                print("ERROR: Max deposit limit is $500 for user.")
+                print("Exiting....")
+                returnß
+               
+            if account2.balance + amount < 0:
+                print(f"ERROR: Insufficient funds to deposit. Current Account Balance: {account2.balance} ")
+                print("Exiting....")
+                return
+            account2.balance = account2.balance + amount
+            print(f"deposit successful. New balance: {account2.balance}")
+      
+
+    def disable(self):
+            print("Disabling account...")
+            userType= input("Enter (S) for Standard user or (A) for Admin user: ")
+            if userType=="S":
+                print("Welcome Standard User \n")
+
+            elif userType=="A":
+                print("Welcome Admin User \n")
+
+
+            if not self.account.user.Admin:
+                print("Standard  mode - Disable")
+                user = User(True)  
+                account2=Account("A123", 500.0, "J",user)
+
+                UserName=(input("Enter Account Holder Name: "))
+                if UserName!= account2.account_name:
+                    print("ERROR: Acount Holder Name is invalid ")
+                    print("Exiting....")
+                    return
+                
+                UserNumber=(input("Enter account Number: "))
+                if UserNumber!= account2.account_id:
+                    print("ERROR: Acount number invalid")
+                    print("Exiting....")
+                    return
+                
+                # Display disable options
+                disableInput = input("Enter (A) to activate the account | Enter (D) to disable the account: ")
+
+                print("The account " + account2.account_id + " has been disabled..." )
+
+            if self.account.user.Admin:
+                print("Admin  mode - Disable")
+                user2 = User(False)  
+                account2=Account("A12", 500.0, "K",user2)
+
+                UserName=(input("Enter Account Holder Name: "))
+                if UserName!= account2.account_name:
+                    print("ERROR: Acount Holder Name is invalid ")
+                    print("Exiting....")
+                    return
+                
+                UserNumber=(input("Enter account Number: "))
+                if UserNumber!= account2.account_id:
+                    print("ERROR: Acount number invalid")
+                    print("Exiting....")
+                    return
+
+            # Display disable options
+                disableInput = input("Enter (A) to activate the account | Enter (D) to disable the account: ")
+
+                print("The account " + account2.account_id + " has been disabled..." )
+            
+            return
+            
+
 
     def create(self):
         print("Create Account - Admin Mode\n")
@@ -281,8 +406,7 @@ class Transaction:
 
         account.deleted = True
         
-    def disable(self):
-        print("Disabling account...")
+  
 
     def change_plan(self):
         print("Change Plan")
