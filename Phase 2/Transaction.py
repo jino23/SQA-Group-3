@@ -284,7 +284,15 @@ class Transaction:
                 "CQ": "Credit Card Company Q",
                 "FI": "Fast Internet, Inc."
             }
+            valid_companies = {
+                "EC": "The Bright Light Electric Company",
+                "CQ": "Credit Card Company Q",
+                "FI": "Fast Internet, Inc."
+            }
 
+            print("Choose the company to pay:")
+            for code, name in valid_companies.items():
+                print(f"{code} - {name}")
             print("Choose the company to pay:")
             for code, name in valid_companies.items():
                 print(f"{code} - {name}")
