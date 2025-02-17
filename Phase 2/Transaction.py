@@ -28,6 +28,11 @@ class Transaction:
         elif userType == "A":
             print("Welcome Admin User \n")
             userAccount = input("Enter account number: ")
+
+            if userName != self.account.account_name:
+                print("Invalid account name.")
+                print("Exiting....")
+                return
             
             if not userAccount == self.account.account_id:
                 print("Invalid account number.")
@@ -41,10 +46,7 @@ class Transaction:
 
             userName = input("Enter account Name: ")
             
-            if userName != self.account.account_name:
-                print("Invalid account name.")
-                print("Exiting....")
-                return
+            
             
             print("Successfully logged in\n")
             self.options_for_Admin()
@@ -74,17 +76,19 @@ class Transaction:
 
             print("Admin mode - Withdrawal")
 
+            UserName=(input("Enter Account Holder Name: "))
+            if UserName!= account2.account_name:
+                print("ERROR: Acount Holder Name is invalid ")
+                print("Exiting....")
+                return
+
             UserNumber = (input("Enter Account Number: "))
             if UserNumber != account2.account_id:
                 print("ERROR: Acount number invalid")
                 print("Exiting....")
                 return
 
-            UserName=(input("Enter Account Holder Name: "))
-            if UserName!= account2.account_name:
-                print("ERROR: Acount Holder Name is invalid ")
-                print("Exiting....")
-                return
+            
                 
             amount = float(input("Enter amount to withdraw: "))
             if amount > 500:
@@ -216,17 +220,19 @@ class Transaction:
             user2 = User(False)  
             account2 = Account("A12", 500, "K", user2, "NP", "A")
 
+            userName = input("Enter Account Holder Name: ")
+            if userName != account2.account_name:
+                print("ERROR: Account Holder Name is invalid.")
+                print("Exiting....")
+                return
+
             userNumber = input("Enter Account Number: ")
             if userNumber != account2.account_id:
                 print("ERROR: Account number invalid.")
                 print("Exiting....")
                 return
 
-            userName = input("Enter Account Holder Name: ")
-            if userName != account2.account_name:
-                print("ERROR: Account Holder Name is invalid.")
-                print("Exiting....")
-                return
+            
 
             valid_companies = {
                 "EC": "The Bright Light Electric Company",
@@ -271,23 +277,7 @@ class Transaction:
 
 
     def deposit(self):
-
-        userType= input("Enter (S) for Standard user or (A) for Admin user: ")
-        if userType=="S":
-            print("Welcome Standard User \n")
-                
-            print("Successfully logged in\n")
-            # self.options_for_standard()
-
-        elif userType=="A":
-
-            print("Welcome Admin User \n")
-           
-            
-            print("Successfully logged in\n")
-            
-            # self.options_for_Admin()
-        
+    
         if not self.account.user.Admin:
             print("Standard  mode - Deposit")
             
@@ -312,17 +302,19 @@ class Transaction:
 
             print("Admin mode - Deposit")
 
+            UserName=(input("Enter Account Holder Name: "))
+            if UserName!= account2.account_name:
+                print("ERROR: Acount Holder Name is invalid ")
+                print("Exiting....")
+                return
+
             UserNumber=(input("Enter account Number: "))
             if UserNumber!= account2.account_id:
                 print("ERROR: Acount number invalid")
                 print("Exiting....")
                 return
 
-            UserName=(input("Enter Account Holder Name: "))
-            if UserName!= account2.account_name:
-                print("ERROR: Acount Holder Name is invalid ")
-                print("Exiting....")
-                return
+            
                 
 
             
