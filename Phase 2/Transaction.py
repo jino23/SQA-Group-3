@@ -252,8 +252,8 @@ class Transaction:
 
         if self.account.user.Admin:
 
-            user2 = User(False)  
-            account2=Account("A12", 5, "K",user2)
+            user = User(True)  
+            account2=Account("A123", 500.0, "J", user, "NP", "A")
 
             print("Admin mode - Deposit")
 
@@ -275,7 +275,7 @@ class Transaction:
             if amount > 500:
                 print("ERROR: Max deposit limit is $500 for user.")
                 print("Exiting....")
-                returnß
+                return
                
             if account2.balance + amount < 0:
                 print(f"ERROR: Insufficient funds to deposit. Current Account Balance: {account2.balance} ")
@@ -512,5 +512,6 @@ account = Account("A123", 500.0, "J", user, "NP", "A")
 user2 = User(False)  
 account2 = Account("S123", 500.0, "K" ,user2, "NP", "S")
 
-transaction = Transaction(account)
+# transaction = Transaction(account)
+transaction = Transaction(account2)
 transaction.login()
