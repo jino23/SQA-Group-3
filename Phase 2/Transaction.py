@@ -125,7 +125,7 @@ class Transaction:
             return
         
         # placeholder for account in back-end
-        receiving_account = Account(to_account_holder, 500, "Receiver", User(False), "NP", "A")  
+        receiving_account = Account("A12", 500, "bh", User(False), "NP", "A")  
         
         try:
             amount = float(input("Enter the amount to transfer: "))
@@ -158,62 +158,117 @@ class Transaction:
 
     def paybill(self):
         print("Paying bill...")
-        
-        if self.account.user.Admin:
-            account_holder_name = input("Enter the account holder's name: ")
-            if account_holder_name != self.account.account_name:
-                print("ERROR: Invalid account holder name.")
+
+        if not self.account.user.Admin:
+            print("Standard Mode - Pay Bill")
+
+            account_number = input("Enter your account number: ")
+            if account_number != self.account.account_id:
+                print("ERROR: Invalid Account number.")
                 print("Exiting....")
                 return
 
-        account_number = input("Enter your account number: ")
+            valid_companies = {
+                "EC": "The Bright Light Electric Company",
+                "CQ": "Credit Card Company Q",
+                "FI": "Fast Internet, Inc."
+            }
 
-        if account_number != self.account.account_id:
-            print("ERROR: You can only pay bills from your own account.")
-            print("Exiting....")
-            return
+            print("Choose the company to pay:")
+            for code, name in valid_companies.items():
+                print(f"{code} - {name}")
 
-        valid_companies = {
-            "EC": "The Bright Light Electric Company",
-            "CQ": "Credit Card Company Q",
-            "FI": "Fast Internet, Inc."
-        }
+            company_code = input("Enter company code (EC, CQ, FI): ").strip().upper()
 
-        print("Choose the company to pay:")
-        for code, name in valid_companies.items():
-            print(f"{code} - {name}")
+            if company_code not in valid_companies:
+                print("ERROR: Invalid company selected.")
+                print("Exiting....")
+                return
 
-        company_code = input("Enter company code (EC, CQ, FI): ").strip().upper()
+            company_name = valid_companies[company_code]
 
-        if company_code not in valid_companies:
-            print("ERROR: Invalid company selected.")
-            print("Exiting....")
-            return
+            try:
+                amount = float(input("Enter the amount to pay (Max $2000 for standard users): "))
+            except ValueError:
+                print("ERROR: Invalid amount entered.")
+                print("Exiting....")
+                return
 
-        company_name = valid_companies[company_code]
-        
-        try:
-            amount = float(input("Enter the amount to pay: "))
-        except ValueError:
-            print("ERROR: Invalid amount entered.")
-            print("Exiting....")
-            return
+            if amount > 2000:
+                print("ERROR: Maximum bill payment in standard mode is $2000.")
+                print("Exiting....")
+                return
 
-        if not self.account.user.Admin and amount > 2000:
-            print("ERROR: Maximum bill payment in standard mode is $2000.")
-            print("Exiting....")
-            return
+            if self.account.balance - amount < 0:
+                print(f"ERROR: Insufficient funds. Your current balance is ${self.account.balance}.")
+                print("Exiting....")
+                return
 
-        if self.account.balance - amount < 0:
-            print(f"ERROR: Insufficient funds. Your current balance is ${self.account.balance}.")
-            print("Exiting....")
-            return
+            self.account.balance -= amount
+            print(f"Bill payment successful!")
+            print(f"Paid ${amount} to {company_name}.")
+            print(f"New balance: ${self.account.balance}")
 
-        self.account.balance -= amount
+        if self.account.user.Admin:
+            print("Admin Mode - Pay Bill")
 
-        print(f"Bill payment successful!")
-        print(f"Paid ${amount} to {company_name}.")
-        print(f"New balance: ${self.account.balance}")
+            # Creating an account object inside the method, like in withdraw()
+            user2 = User(False)  
+            account2 = Account("A12", 500, "K", user2, "NP", "A")
+
+            userNumber = input("Enter Account Number: ")
+            if userNumber != account2.account_id:
+                print("ERROR: Account number invalid.")
+                print("Exiting....")
+                return
+
+            userName = input("Enter Account Holder Name: ")
+            if userName != account2.account_name:
+                print("ERROR: Account Holder Name is invalid.")
+                print("Exiting....")
+                return
+
+            valid_companies = {
+                "EC": "The Bright Light Electric Company",
+                "CQ": "Credit Card Company Q",
+                "FI": "Fast Internet, Inc."
+            }
+
+            print("Choose the company to pay:")
+            for code, name in valid_companies.items():
+                print(f"{code} - {name}")
+
+            company_code = input("Enter company code (EC, CQ, FI): ").strip().upper()
+
+            if company_code not in valid_companies:
+                print("ERROR: Invalid company selected.")
+                print("Exiting....")
+                return
+
+            company_name = valid_companies[company_code]
+
+            try:
+                amount = float(input("Enter the amount to pay (Max $5000 for admin users): "))
+            except ValueError:
+                print("ERROR: Invalid amount entered.")
+                print("Exiting....")
+                return
+
+            if amount > 5000:
+                print("ERROR: Maximum bill payment for admin mode is $5000.")
+                print("Exiting....")
+                return
+
+            if account2.balance - amount < 0:
+                print(f"ERROR: Insufficient funds. Current balance: ${account2.balance}.")
+                print("Exiting....")
+                return
+
+            account2.balance -= amount
+            print(f"Bill payment successful!")
+            print(f"Paid ${amount} to {company_name}.")
+            print(f"New balance: ${account2.balance}")
+
 
     def deposit(self):
 
@@ -286,63 +341,45 @@ class Transaction:
       
 
     def disable(self):
-            print("Disabling account...")
-            userType= input("Enter (S) for Standard user or (A) for Admin user: ")
-            if userType=="S":
-                print("Welcome Standard User \n")
-
-            elif userType=="A":
-                print("Welcome Admin User \n")
-
-
-            if not self.account.user.Admin:
-                print("Standard  mode - Disable")
-                user = User(True)  
-                account2=Account("A123", 500.0, "J",user)
-
-                UserName=(input("Enter Account Holder Name: "))
-                if UserName!= account2.account_name:
-                    print("ERROR: Acount Holder Name is invalid ")
-                    print("Exiting....")
-                    return
-                
-                UserNumber=(input("Enter account Number: "))
-                if UserNumber!= account2.account_id:
-                    print("ERROR: Acount number invalid")
-                    print("Exiting....")
-                    return
-                
-                # Display disable options
-                disableInput = input("Enter (A) to activate the account | Enter (D) to disable the account: ")
-
-                print("The account " + account2.account_id + " has been disabled..." )
-
-            if self.account.user.Admin:
-                print("Admin  mode - Disable")
-                user2 = User(False)  
-                account2=Account("A12", 500.0, "K",user2)
-
-                UserName=(input("Enter Account Holder Name: "))
-                if UserName!= account2.account_name:
-                    print("ERROR: Acount Holder Name is invalid ")
-                    print("Exiting....")
-                    return
-                
-                UserNumber=(input("Enter account Number: "))
-                if UserNumber!= account2.account_id:
-                    print("ERROR: Acount number invalid")
-                    print("Exiting....")
-                    return
-
-            # Display disable options
-                disableInput = input("Enter (A) to activate the account | Enter (D) to disable the account: ")
-
-                print("The account " + account2.account_id + " has been disabled..." )
             
-            return
+        if self.account.user.Admin==True:
+            print("Admin  mode - Disable")
+            user2 = User(False)  
+            account2=Account("A12", 500.0, "K",user2, "NP", "A")
+
+            UserName=(input("Enter Account Holder Name: "))
+            if UserName!= account2.account_name:
+                print("ERROR: Acount Holder Name is invalid ")
+                print("Exiting....")
+                return
             
+            UserNumber=(input("Enter account Number: "))
+            if UserNumber!= account2.account_id:
+                print("ERROR: Acount number invalid")
+                print("Exiting....")
+                return
+
+        # Display disable options
+            disableInput = input("Enter (A) to activate the account | Enter (D) to disable the account: ")
+            if disableInput=="A":
+                if account2.activity=="A":
+                    print("This account is already active\nExiting...")
+                elif account2.activity=="D":
+                    account2.activity="A"
+                    print("Account successfully Activated\n Exiting.... ")
+            elif disableInput=="D":
+                if account2.activity=="D":
+                    print("This account is already Disabled\nExiting...")
+                elif account2.activity=="A":
+                    account2.activity="D"
+                    print("Account successfully Disabled\n Exiting.... ")
+
+            else:
+                print("ERROR - Invalid this type of activity does not exist\nExiting...")
+                return
 
 
+    #Create out put
     def create(self):
         print("Create Account - Admin Mode\n")
         name = input("Enter name for account holder: ")
@@ -409,35 +446,46 @@ class Transaction:
   
 
     def change_plan(self):
-        print("Change Plan")
-        account_name = str
-        account_number = str
-        np = str
+        if not self.account.user.Admin:
+            print("ERROR: Only an Admin can change account plans.")
+            print("Exiting....")
+            return
 
-        while not account_name == account2.account_name: 
-            account_name = input("Enter Account Name to Be Changed: ")
-            if not account_name == account2.account_name:
-                print("Invalid account name! Try again!")
-            elif account_name == "":
-                print("Please enter an account name!")
+        print("Admin Mode - Change Account Plan")
 
-        while not account_number == account2.account_id:
-            account_number = input("Enter Account Number to Be Changed: ")
-            if not account_number == account2.account_id:
-                print("This is not a valid account number!")
-            elif account_number == "":
-                print("Please enter an account number!")
-           
-        print("Account number validation successful")
-        while not np == "NP":
-            np = input("Enter NP to switch the bank account payment plan from Student to Non-Student.")
-            if np == "":
-                break
-            elif np == "NP":
-                account2.plan = "NP"
-                print("Changed from student to non-student")
-                print("All changes saved successfully. Returning to main menu...")
+        # Creating a new account object inside the method (like in withdraw)
+        user2 = User(False)  
+        account2 = Account("A12", 500.0, "K", user2, "NP", "A")
+
+        userName = input("Enter Account Holder Name: ")
+        if userName != account2.account_name:
+            print("ERROR: Account Holder Name is invalid.")
+            print("Exiting....")
+            return
+
+        userNumber = input("Enter Account Number: ")
+        if userNumber != account2.account_id:
+            print("ERROR: Account number invalid.")
+            print("Exiting....")
+            return
+
+        print(f"Current Plan for {account2.account_name}: {account2.plan}")
+        
+        # Allow Admin to change the plan to NP (Non-Student Plan) or SP (Student Plan)
+        new_plan = input("Enter 'NP' to switch to Non-Student Plan or 'SP' to switch to Student Plan: ").strip().upper()
+
+        if new_plan not in ["NP", "SP"]:
+            print("ERROR: Invalid input. Please enter 'NP' or 'SP'.")
+            print("Exiting....")
+            return
+
+        # Update the plan
+        account2.plan = new_plan
+        print(f"Plan successfully changed to {account2.plan} for account {account2.account_id}.")
+        print("All changes saved successfully. Returning to main menu...")
+
         self.options_for_Admin()
+
             
     def logout(self):
         print("logging out...")
@@ -513,5 +561,5 @@ user2 = User(False)
 account2 = Account("S123", 500.0, "K" ,user2, "NP", "S")
 
 # transaction = Transaction(account)
-transaction = Transaction(account2)
+transaction = Transaction(account)
 transaction.login()
