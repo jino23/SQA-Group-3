@@ -42,8 +42,8 @@ class Transaction:
         elif user_type == "A":
             # Admin user login
             print("Welcome Admin User\n")
-            account_id = input("Enter account number: ")
             account_name = input("Enter account Name: ")
+            account_id = input("Enter account number: ")
             # Validate admin credentials
             if account_name != self.account.account_name:
                 print("Invalid account name.\nExiting....")
@@ -89,6 +89,7 @@ class Transaction:
 
             self.account.balance -= amount
             print(f"Withdrawal successful! New balance: {self.account.balance}")
+            self.options_for_standard
 
         else:
             # Admin user withdrawal flow using a placeholder account
@@ -123,6 +124,8 @@ class Transaction:
 
             placeholder_account.balance -= amount
             print(f"Withdrawal successful! New balance: {placeholder_account.balance}")
+
+            self.options_for_Admin
 
     def transfer(self):
         """
@@ -171,23 +174,37 @@ class Transaction:
             print(f"Your new balance: ${self.account.balance}")
             print(f"Receiving account ({to_account}) new balance: ${receiving_account.balance}")
 
+            self.options_for_standard
+
         else:
             # Admin Transfer Flow
             print("Admin mode - Transfer")
-            admin_name = input("Enter Account Holder Name: ")
-            if admin_name != self.account.account_name:
+
+            placeholder_user = User(False)
+            placeholder_account = Account("A12", 500, "K", placeholder_user, "NP", "A")
+
+            placeholder_user_to_send = User(False)
+            placeholder_account_to_send = Account("909", 500, "ppp", placeholder_user_to_send, "NP", "A")
+
+
+            name = input("Enter Account Holder Name: ")
+            if name != placeholder_account.account_name:
                 print("ERROR: Invalid Account Holder Name.\nExiting....")
                 return
 
             from_account = input("Enter the source account number: ")
-            if from_account != self.account.account_id:
+            if from_account != placeholder_account.account_id:
                 print("ERROR: Invalid source account number.\nExiting....")
                 return
 
             to_account = input("Enter the destination account number: ")
             # Prevent transferring to the same account
-            if to_account == self.account.account_id:
-                print("ERROR: Cannot transfer to the same account.\nExiting....")
+            if to_account != placeholder_account_to_send.account_id:
+                print("ERROR: This account does not exist.\nExiting....")
+                return
+
+            if to_account==from_account:
+                print("ERROR: Cannot transfer to the same account\n Exiting...")
                 return
 
             try:
@@ -196,20 +213,21 @@ class Transaction:
                 print("ERROR: Invalid input. Please enter a numeric value.\nExiting....")
                 return
 
-            if self.account.balance - amount < 0:
+            if placeholder_account.balance - amount < 0:
                 print(
                     f"ERROR: Insufficient funds. Current Balance: ${self.account.balance}.\nExiting...."
                 )
                 return
 
             # Create a placeholder receiving account for admin mode
-            receiving_account = Account(to_account, 500, "Receiver", User(False), "NP", "A")
-            self.account.balance -= amount
-            receiving_account.balance += amount
+            placeholder_account.balance -= amount
+            placeholder_account_to_send.balance += amount
 
             print("Transfer successful!")
-            print(f"Source account ({from_account}) new balance: ${self.account.balance}")
-            print(f"Destination account ({to_account}) new balance: ${receiving_account.balance}")
+            print(f"Source account ({placeholder_account.account_id}) new balance: ${placeholder_account.balance}")
+            print(f"Destination account ({placeholder_account_to_send.account_id}) new balance: ${placeholder_account_to_send.balance}\n")
+            self.options_for_Admin()
+
 
     def paybill(self):
         """
@@ -224,7 +242,7 @@ class Transaction:
             if account_number != self.account.account_id:
                 print("ERROR: Invalid account number.\nExiting....")
                 return
-
+            #company names
             valid_companies = {
                 "EC": "The Bright Light Electric Company",
                 "CQ": "Credit Card Company Q",
@@ -239,7 +257,7 @@ class Transaction:
             if company_code not in valid_companies:
                 print("ERROR: Invalid company selected.\nExiting....")
                 return
-
+            #check for invalid inputs
             company_name = valid_companies[company_code]
             try:
                 amount = float(
@@ -259,10 +277,14 @@ class Transaction:
                 )
                 return
 
+            #print the values
             self.account.balance -= amount
             print("Bill payment successful!")
             print(f"Paid ${amount} to {company_name}.")
-            print(f"New balance: ${self.account.balance}")
+            print(f"New balance: ${self.account.balance}\n")
+            self.options_for_standard()
+            
+            
 
         else:
             # Admin Mode Bill Payment using a placeholder account
@@ -279,11 +301,8 @@ class Transaction:
                 print("ERROR: Account number invalid.\nExiting....")
                 return
 
-            valid_companies = {
-                "EC": "The Bright Light Electric Company",
-                "CQ": "Credit Card Company Q",
-                "FI": "Fast Internet, Inc."
-            }
+            #valid compnaies
+            
             valid_companies = {
                 "EC": "The Bright Light Electric Company",
                 "CQ": "Credit Card Company Q",
@@ -297,6 +316,7 @@ class Transaction:
             for code, name in valid_companies.items():
                 print(f"{code} - {name}")
 
+            ##error check
             company_code = input("Enter company code (EC, CQ, FI): ").strip().upper()
             if company_code not in valid_companies:
                 print("ERROR: Invalid company selected.\nExiting....")
@@ -324,13 +344,16 @@ class Transaction:
             placeholder_account.balance -= amount
             print("Bill payment successful!")
             print(f"Paid ${amount} to {company_name}.")
-            print(f"New balance: ${placeholder_account.balance}")
+            print(f"New balance: ${placeholder_account.balance}\n")
+            self.options_for_Admin()
+
 
     def deposit(self):
         """
         Process a deposit transaction.
         Separate flows exist for standard and admin users.
         """
+        
         if not self.account.user.Admin:
             # Standard Mode Deposit
             print("Standard mode - Deposit")
@@ -348,6 +371,8 @@ class Transaction:
 
             self.account.balance += amount
             print(f"Deposit successful. New balance: {self.account.balance}")
+
+            self.options_for_standard()
 
         else:
             # Admin Mode Deposit using a placeholder account
@@ -376,6 +401,8 @@ class Transaction:
 
             placeholder_account.balance += amount
             print(f"Deposit successful. New balance: {placeholder_account.balance}")
+
+            self.options_for_Admin()
 
     def disable(self):
         """
@@ -414,6 +441,7 @@ class Transaction:
             else:
                 print("ERROR: Invalid activity type.\nExiting....")
                 return
+            self.options_for_Admin()
 
     def create(self):
         """
@@ -479,6 +507,8 @@ class Transaction:
         del self.bank_system.accounts[account_holder_name]
         print(f"Account {account_number} for {account_holder_name} has been deleted successfully.")
         account.deleted = True
+
+        self.options_for_Admin()
 
     def change_plan(self):
         """
