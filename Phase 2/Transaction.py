@@ -43,11 +43,11 @@ class Transaction:
             # Admin user login
             print("Welcome Admin User\n")
             account_name = input("Enter account Name: ")
-            account_id = input("Enter account number: ")
             # Validate admin credentials
             if account_name != self.account.account_name:
                 print("Invalid account name.\nExiting....")
                 return
+            account_id = input("Enter account number: ")
             if account_id != self.account.account_id:
                 print("Invalid account number.\nExiting....")
                 return
