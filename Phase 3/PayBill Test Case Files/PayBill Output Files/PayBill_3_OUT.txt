@@ -1,0 +1,26 @@
+Welcome!
+
+What mode would you like to log in to?
+Enter S for Standard Mode, Enter A for Admin Mode: 
+
+Standard Mode Chosen.
+
+Enter Account Number: 
+
+Enter a code for the type of transaction you want to complete: 
+01 - Withdrawal
+02 - Transfer
+03 - PayBill
+04 - Deposit
+00 - End of Session
+
+PayBill Session - Standard Mode
+
+Enter Company Name: 
+
+Enter the amount of money being paid: 
+
+ERROR: Standard Mode only allows up to $2000.00 to be paid.
+
+Enter the amount of money being paid: 
+

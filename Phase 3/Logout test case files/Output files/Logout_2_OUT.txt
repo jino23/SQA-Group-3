@@ -1,0 +1,34 @@
+Welcome!
+
+What mode would you like to log in to?
+Enter S for Standard Mode, Enter A for Admin Mode: 
+
+Standard Mode Chosen.
+
+Enter Account Number: 
+
+Enter a code for the type of transaction you want to complete: 
+01 - Withdrawal
+02 - Transfer
+03 - PayBill
+04 - Deposit
+00 - End of Session
+
+End of Session - Successfully logged out
+
+Welcome!
+
+What mode would you like to log in to?
+Enter S for Standard Mode, Enter A for Admin Mode: 
+
+Standard Mode Chosen.
+
+Enter Account Number: 
+
+Enter a code for the type of transaction you want to complete: 
+01 - Withdrawal
+02 - Transfer
+03 - PayBill
+04 - Deposit
+00 - End of Session
+
