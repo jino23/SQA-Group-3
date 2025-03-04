@@ -30,7 +30,7 @@ class Transaction:
 
         if user_type == "S":
             # Standard user login
-            print("Welcome Standard User\n")
+            print("\nWelcome Standard User\n")
             account_id = input("Enter account number: ")
             if account_id != standard_account.account_id:
                 print("Invalid account number.\nExiting....")
@@ -46,7 +46,7 @@ class Transaction:
 
         elif user_type == "A":
             # Admin user login (flipped: first account number, then name)
-            print("Welcome Admin User\n")
+            print("\nWelcome Admin User\n")
             account_id = input("Enter account number: ")
             if account_id != admin_account.account_id:
                 print("Invalid account number.\nExiting....")
@@ -73,55 +73,55 @@ class Transaction:
         """
         if not self.account.user.Admin:
             # Standard user withdrawal flow
-            print("Standard mode - Withdrawal")
+            print("\nStandard mode - Withdrawal")
             try:
-                amount = float(input("Enter amount to withdraw (Max limit is $500 for standard users): "))
+                amount = float(input("\nEnter amount to withdraw (Max limit is $500 for standard users): "))
             except ValueError:
-                print("ERROR: Please enter a valid number.\nExiting....")
+                print("\nERROR: Please enter a valid number.\nExiting....")
                 return
 
             if amount > 500:
-                print("ERROR: Max withdrawal limit is $500 for standard users.\nExiting....")
+                print("\nERROR: Max withdrawal limit is $500 for standard users.\nExiting....")
                 return
 
             if self.account.balance - amount < 0:
-                print(f"ERROR: Insufficient funds. Current Balance: {self.account.balance}.\nExiting....")
+                print(f"\nERROR: Insufficient funds. Current Balance: {self.account.balance}.\nExiting....")
                 return
 
             self.account.balance -= amount
-            print(f"Withdrawal successful! New balance: {self.account.balance}")
+            print(f"\nWithdrawal successful! New balance: {self.account.balance}")
             self.options_for_standard()
 
         else:
             # Admin user withdrawal flow using a placeholder account (flipped order)
             placeholder_user = User(False)
-            placeholder_account = Account("A12", 50, "K", placeholder_user, "NP", "A")
-            print("Admin mode - Withdrawal")
-            input_account = input("Enter Account Number: ")
+            placeholder_account = Account("A12", 500, "Kobz", placeholder_user, "NP", "A")
+            print("\nAdmin mode - Withdrawal")
+            input_account = input("\nEnter Account Number: ")
             if input_account != placeholder_account.account_id:
-                print("ERROR: Account number invalid.\nExiting....")
+                print("\nERROR: Account number invalid.\nExiting....")
                 return
-            input_name = input("Enter Account Holder Name: ")
+            input_name = input("\nEnter Account Holder Name: ")
             if input_name != placeholder_account.account_name:
-                print("ERROR: Account Holder Name is invalid.\nExiting....")
+                print("\nERROR: Account Holder Name is invalid.\nExiting....")
                 return
 
             try:
-                amount = float(input("Enter amount to withdraw: "))
+                amount = float(input("\nEnter amount to withdraw: "))
             except ValueError:
-                print("ERROR: Please enter a valid number.\nExiting....")
+                print("\nERROR: Please enter a valid number.\nExiting....")
                 return
 
             if amount > 500:
-                print("ERROR: Max withdrawal limit is $500 for admin users.\nExiting....")
+                print("\nERROR: Max withdrawal limit is $500 for admin users.\nExiting....")
                 return
 
             if placeholder_account.balance - amount < 0:
-                print(f"ERROR: Insufficient funds. Current Account Balance: {placeholder_account.balance}.\nExiting....")
+                print(f"\nERROR: Insufficient funds. Current Account Balance: {placeholder_account.balance}.\nExiting....")
                 return
 
             placeholder_account.balance -= amount
-            print(f"Withdrawal successful! New balance: {placeholder_account.balance}")
+            print(f"\nWithdrawal successful! New balance: {placeholder_account.balance}")
             self.options_for_Admin()
 
     def transfer(self):
