@@ -1,0 +1,35 @@
+Welcome!
+
+What mode would you like to log in to?
+Enter S for Standard Mode, Enter A for Admin Mode: 
+
+Admin Mode Chosen.
+
+Enter Account Number: 
+
+Enter Account Name: 
+
+Enter a code for the type of transaction you want to complete: 
+01 - Withdrawal
+02 - Transfer
+03 - PayBill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+
+Create Account Session - Admin Mode
+
+Enter Name for Account Holder: 
+
+ERROR - Name cannot be over 20 characters
+
+Enter Name for Account Holder: 
+
+Enter initial balance: 
+
+Successfully created account for John Cena - Account Number is 1001234
+
+Back to main page

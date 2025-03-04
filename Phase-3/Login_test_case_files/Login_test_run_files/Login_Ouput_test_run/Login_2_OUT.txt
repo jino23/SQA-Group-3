@@ -1,0 +1,11 @@
+Enter (S) for Standard user or (A) for Admin user: Welcome Standard User
+
+Enter account number: Successfully logged in!
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+00 - End of Session
+Enter the number: 

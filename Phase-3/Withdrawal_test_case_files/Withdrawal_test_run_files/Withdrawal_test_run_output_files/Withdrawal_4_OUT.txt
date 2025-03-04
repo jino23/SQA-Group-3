@@ -1,0 +1,36 @@
+Enter (S) for Standard user or (A) for Admin user: 
+Welcome Standard User
+
+Enter account number: Successfully logged in!
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+00 - End of Session
+Enter the number: 
+Standard mode - Withdrawal
+
+Enter amount to withdraw (Max limit is $500 for standard users): 
+Withdrawal successful! New balance: 300.0
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+00 - End of Session
+Enter the number: 
+Standard mode - Withdrawal
+
+Enter amount to withdraw (Max limit is $500 for standard users): 
+Withdrawal successful! New balance: 200.0
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+00 - End of Session
+Enter the number: 
+
+Logging out...
