@@ -1,5 +1,5 @@
 S
-1001234
+S123
 03
 “The Bright Light Electric Company (EC)”, “Credit Card Company Q (CQ)”,  “Fast Internet, Inc (FI)”
 $2500.00
