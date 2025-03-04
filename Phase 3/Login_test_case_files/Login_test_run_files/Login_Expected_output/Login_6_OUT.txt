@@ -1,15 +1,12 @@
-Welcome!
+Enter (S) for Standard user or (A) for Admin user: Welcome Standard User
 
-What mode would you like to log in to?
-Enter S for Standard Mode, Enter A for Admin Mode: 
+Enter account number: Successfully logged in!
 
-Standard Mode Chosen.
-
-Enter Account Number: 
-
-Enter a code for the type of transaction you want to complete: 
+--------------MENU SESSION----------------
 01 - Withdrawal
 02 - Transfer
-03 - PayBill
+03 - Pay Bill
 04 - Deposit
 00 - End of Session
+Enter the number: Error: Invalid code.
+Exiting....
