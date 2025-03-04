@@ -213,12 +213,11 @@ class Transaction:
         Process a bill payment transaction.
         Separate flows exist for standard and admin users.
         """
-        print("Paying bill...")
         if not self.account.user.Admin:
-            print("Standard Mode - Pay Bill")
-            account_number = input("Enter your account number: ")
+            print("Standard Mode - Pay Bill\n")
+            account_number = input("Enter your account number: \n")
             if account_number != self.account.account_id:
-                print("ERROR: Invalid account number.\nExiting....")
+                print("\nERROR: Invalid account number.\nExiting....")
                 return
 
             valid_companies = {
@@ -227,34 +226,34 @@ class Transaction:
                 "FI": "Fast Internet, Inc."
             }
 
-            print("Choose the company to pay:")
+            print("\nChoose the company to pay:")
             for code, name in valid_companies.items():
                 print(f"{code} - {name}")
 
-            company_code = input("Enter company code (EC, CQ, FI): ").strip().upper()
+            company_code = input("\nEnter company code (EC, CQ, FI): ").strip().upper()
             if company_code not in valid_companies:
                 print("ERROR: Invalid company selected.\nExiting....")
                 return
 
             company_name = valid_companies[company_code]
             try:
-                amount = float(input("Enter the amount to pay (Max $2000 for standard users): "))
+                amount = float(input("\nEnter the amount to pay (Max $2000 for standard users): "))
             except ValueError:
-                print("ERROR: Invalid amount entered.\nExiting....")
+                print("\nERROR: Invalid amount entered.\nExiting....")
                 return
 
             if amount > 2000:
-                print("ERROR: Maximum bill payment in standard mode is $2000.\nExiting....")
+                print("\nERROR: Maximum bill payment in standard mode is $2000.\nExiting....")
                 return
 
             if self.account.balance - amount < 0:
-                print(f"ERROR: Insufficient funds. Your current balance is ${self.account.balance}.\nExiting....")
+                print(f"\nERROR: Insufficient funds. Your current balance is ${self.account.balance}.\nExiting....")
                 return
 
             self.account.balance -= amount
-            print("Bill payment successful!")
-            print(f"Paid ${amount} to {company_name}.")
-            print(f"New balance: ${self.account.balance}\n")
+            print("\nBill payment successful!")
+            print(f"\nPaid ${amount} to {company_name}.")
+            print(f"\nNew balance: ${self.account.balance}\n")
             self.options_for_standard()
 
         else:

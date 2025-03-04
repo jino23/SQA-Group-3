@@ -1,4 +1,6 @@
 S
 S123
 03
-“The Bright Light Electric Company (EC)”, “Credit Card Company Q (CQ)”,  “Fast Internet, Inc (FI)”
+S123
+EC
+200
