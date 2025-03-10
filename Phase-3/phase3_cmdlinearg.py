@@ -33,7 +33,7 @@ class Transaction:
             print("\nWelcome Standard User\n")
             account_id = input("Enter account number: \n")
             if account_id != standard_account.account_id:
-                print("Invalid account number.\nExiting....")
+                print("Invalid account number.\nExiting....\n")
                 return
             # Ensure that this is not an admin account
             if standard_account.user.Admin is True:
@@ -73,7 +73,7 @@ class Transaction:
         """
         if not self.account.user.Admin:
             # Standard user withdrawal flow
-            print("\nStandard mode - Withdrawal")
+            print("\nStandard mode - Withdrawal\n")
             try:
                 amount = float(input("\nEnter amount to withdraw (Max limit is $500 for standard users):\n"))
             except ValueError:
@@ -257,7 +257,7 @@ class Transaction:
             print("Admin Mode - Pay Bill")
             placeholder_user = User(False)
             placeholder_account = Account("A12", 500, "Kobz", placeholder_user, "NP", "A")
-            input_account = input("Enter Account Number: ")
+            input_account = input("Enter Account Number:\n")
             if input_account != placeholder_account.account_id:
                 print("ERROR: Account number invalid.\nExiting....\n")
                 return
@@ -272,7 +272,7 @@ class Transaction:
                 "FI": "Fast Internet, Inc."
             }
 
-            print("Choose the company to pay: \n")
+            print("Choose the company to pay:\n")
             for code, name in valid_companies.items():
                 print(f"{code} - {name}")
 
@@ -297,8 +297,8 @@ class Transaction:
                 return
 
             placeholder_account.balance -= amount
-            print("Bill payment successful!")
-            print(f"Paid ${amount} to {company_name}.")
+            print("Bill payment successful!\n")
+            print(f"Paid ${amount} to {company_name}.\n")
             print(f"New balance: ${placeholder_account.balance}\n")
             self.options_for_Admin()
 
@@ -368,7 +368,7 @@ class Transaction:
                 print("ERROR: Account Holder Name is invalid.\nExiting....\n")
                 return
 
-            disable_input = input("Enter (A) to activate the account | Enter (D) to disable the account: \n").upper()
+            disable_input = input("Enter (A) to activate the account | Enter (D) to disable the account:\n").upper()
 
             if disable_input == "A":
                 if placeholder_account.activity == "A":

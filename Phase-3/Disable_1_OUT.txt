@@ -1,8 +1,0 @@
-Enter (S) for Standard user or (A) for Admin user: 
-
-Welcome Admin User
-
-Enter account number:
-Enter account Name: Invalid account name.
-Exiting....
-

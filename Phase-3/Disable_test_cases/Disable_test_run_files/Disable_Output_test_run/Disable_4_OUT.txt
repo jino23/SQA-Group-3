@@ -1,5 +1,34 @@
 Enter (S) for Standard user or (A) for Admin user: 
+
 Welcome Admin User
 
-Enter account number: Invalid account number.
+Enter account number:
+Enter account name: Successfully logged in
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+Enter the number: 
+Admin mode - Disable
+Enter account Number: Enter Account Holder Name: Enter (A) to activate the account | Enter (D) to disable the account:
+Account successfully disabled.
 Exiting....
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+Enter the number: 

@@ -27,6 +27,7 @@ Enter the number:
 
 Standard mode - Withdrawal
 
+
 Enter amount to withdraw (Max limit is $500 for standard users):
 
 ERROR: Max withdrawal limit is $500 for standard users.

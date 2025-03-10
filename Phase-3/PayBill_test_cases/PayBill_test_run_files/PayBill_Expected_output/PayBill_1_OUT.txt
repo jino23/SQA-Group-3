@@ -3,7 +3,7 @@ Enter (S) for Standard user or (A) for Admin user:
 Welcome Admin User
 
 Enter account number:
-Enter account Name: Successfully logged in
+Enter account name: Successfully logged in
 
 --------------MENU SESSION----------------
 01 - Withdrawal
