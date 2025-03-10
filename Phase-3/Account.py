@@ -7,5 +7,3 @@ class Account:
         self.user=user
         self.plan=plan
         self.activity=activity
-
-    
