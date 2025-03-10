@@ -1,8 +1,0 @@
-Welcome!
-
-What mode would you like to log in to?
-Enter S for Standard Mode, Enter A for Admin Mode: 
-
-Standard Mode Chosen.
-
-Enter Account Number: 

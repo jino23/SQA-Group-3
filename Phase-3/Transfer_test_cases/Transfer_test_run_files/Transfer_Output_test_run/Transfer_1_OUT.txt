@@ -1,0 +1,40 @@
+Enter (S) for Standard user or (A) for Admin user: 
+
+Welcome Admin User
+
+Enter account number:
+Enter account name: Successfully logged in
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+Enter the number: 
+Admin mode - Transfer
+Enter the source account number:
+Enter Account Holder Name for the source account: 
+Enter the destination account number:
+Enter amount to transfer:
+Transfer successful!
+
+Source account (A1234) new balance: $400.0
+
+Destination account (S12) new balance: $600.0
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+Enter the number: 

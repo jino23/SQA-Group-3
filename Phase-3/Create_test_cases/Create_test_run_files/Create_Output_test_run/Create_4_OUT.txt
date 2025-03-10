@@ -1,0 +1,40 @@
+Enter (S) for Standard user or (A) for Admin user: 
+
+Welcome Admin User
+
+Enter account number:
+Enter account Name: Successfully logged in
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+05 - Create
+06 - Delete
+07 - Disable
+08 - Change Plan
+00 - End of Session
+Enter the number: 
+Create Account - Admin Mode
+
+Enter name for account holder: 
+Enter amount for the balance: 
+Account successfully created
+
+Account Number: 8112294250
+
+Balance: 10000.0
+
+Account Name: Cohn Jena
+
+Account Plan: NP
+
+Account Activity: A
+
+--------------MENU SESSION----------------
+00 - Logout:
+Enter the number: 
+Error: Invalid code.
+Exiting....
+

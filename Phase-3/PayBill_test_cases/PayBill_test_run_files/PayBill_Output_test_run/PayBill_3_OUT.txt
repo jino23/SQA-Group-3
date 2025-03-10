@@ -1,0 +1,30 @@
+Enter (S) for Standard user or (A) for Admin user: 
+
+Welcome Standard User
+
+Enter account number: 
+Successfully logged in!
+
+--------------MENU SESSION----------------
+01 - Withdrawal
+02 - Transfer
+03 - Pay Bill
+04 - Deposit
+00 - End of Session
+Enter the number: 
+Standard Mode - Pay Bill
+
+Enter your account number: 
+
+Choose the company to pay:
+
+EC - The Bright Light Electric Company
+CQ - Credit Card Company Q
+FI - Fast Internet, Inc.
+
+Enter company code (EC, CQ, FI): 
+Enter the amount to pay (Max $2000 for standard users): 
+
+ERROR: Maximum bill payment in standard mode is $2000.
+Exiting....
+
